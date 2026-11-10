@@ -22,6 +22,10 @@ jobs:
       - name: Install CycloneDX
         run: npm install -g @cyclonedx/cyclonedx-npm
 
+      - name: Generate package lock
+        working-directory: frontend
+        run: npm install --package-lock-only --ignore-scripts --legacy-peer-deps
+
       - name: Generate SBOM
         working-directory: frontend
         run: cyclonedx-npm --package-lock-only --ignore-npm-errors --output-file sbom.json
